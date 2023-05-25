@@ -46,15 +46,12 @@ class _MessangerChatHeadState extends State<MessangerChatHead> {
       child: GestureDetector(
         onTap: () async {
           if (_currentShape == BoxShape.rectangle) {
-            await FlutterOverlayWindow.resizeOverlay(50, 100);
+            await FlutterOverlayWindow.resizeOverlay(100, 100);
             setState(() {
               _currentShape = BoxShape.circle;
             });
           } else {
-            await FlutterOverlayWindow.resizeOverlay(
-              WindowSize.matchParent,
-              WindowSize.matchParent,
-            );
+            await FlutterOverlayWindow.resizeOverlay(200, 200);
             setState(() {
               _currentShape = BoxShape.rectangle;
             });
@@ -63,41 +60,24 @@ class _MessangerChatHeadState extends State<MessangerChatHead> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.transparent,
             shape: _currentShape,
           ),
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _currentShape == BoxShape.rectangle
-                    ? SizedBox(
-                        width: 50.0,
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.black,
-                          ),
-                          onPressed: () {
-                            homePort ??= IsolateNameServer.lookupPortByName(
-                              _kPortNameHome,
-                            );
-                            homePort?.send('Date: ${DateTime.now()}');
-                          },
-                          child: const Text("Send message to UI"),
-                        ),
-                      )
-                    : const SizedBox.shrink(),
-                _currentShape == BoxShape.rectangle
-                    ? messageFromOverlay == null
-                        ? const FlutterLogo()
-                        : Text(messageFromOverlay ?? '')
-                    : const FlutterLogo()
-              ],
-            ),
-          ),
+          child: const BubbleAvatar(),
         ),
       ),
+    );
+  }
+}
+
+class BubbleAvatar extends StatelessWidget {
+  const BubbleAvatar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const CircleAvatar(
+      radius: 50,
+      backgroundImage: AssetImage('assets/images/icon1.png'),
     );
   }
 }
