@@ -15,7 +15,6 @@ void overlayMain() {
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OverlayHomePage(),
       initialRoute: OverlayHomePage.routeName,
       getPages: AppRoute.getPage(),
     ),

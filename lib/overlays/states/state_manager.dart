@@ -22,7 +22,7 @@ class StateManager {
   static JobState buildImportantOnlyState() {
     return JobState(
         key: StateConstant.importantUrgentState,
-        image: AssetHelper.icon1,
+        image: AssetHelper.icon2,
         text1: 'Important',
         text2: 'Not Urgent',
         time: 0);
@@ -31,7 +31,7 @@ class StateManager {
   static JobState buildUrgentOnlyState() {
     return JobState(
         key: StateConstant.importantUrgentState,
-        image: AssetHelper.icon1,
+        image: AssetHelper.icon3,
         text1: 'Not Important',
         text2: 'Urgent',
         time: 0);
@@ -40,9 +40,19 @@ class StateManager {
   static JobState buildUselessState() {
     return JobState(
         key: StateConstant.importantUrgentState,
-        image: AssetHelper.icon1,
+        image: AssetHelper.icon4,
         text1: 'Not Important',
         text2: 'Not Urgent',
         time: 0);
+  }
+
+  late JobState currentState;
+
+  StateManager() {
+    changeState(StateConstant.importantUrgentState);
+  }
+
+  void changeState(String key) {
+    currentState = states[key]!;
   }
 }
