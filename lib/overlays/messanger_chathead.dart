@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay_window/flutter_overlay_window.dart';
+import 'package:what_am_i_doing/overlays/circle_menu_layout.dart';
 
 class MessangerChatHead extends StatefulWidget {
   const MessangerChatHead({Key? key}) : super(key: key);
@@ -63,21 +64,11 @@ class _MessangerChatHeadState extends State<MessangerChatHead> {
             color: Colors.transparent,
             shape: _currentShape,
           ),
-          child: const BubbleAvatar(),
+          child: _currentShape == BoxShape.circle
+              ? BubbleAvatar()
+              : ExpandAvatar(),
         ),
       ),
-    );
-  }
-}
-
-class BubbleAvatar extends StatelessWidget {
-  const BubbleAvatar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const CircleAvatar(
-      radius: 50,
-      backgroundImage: AssetImage('assets/images/icon1.png'),
     );
   }
 }
