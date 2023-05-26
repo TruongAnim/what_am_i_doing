@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:what_am_i_doing/home_page.dart';
-
-import 'overlays/messanger_chathead.dart';
+import 'package:what_am_i_doing/overlays/pages/overlay_home_page.dart';
+import 'package:what_am_i_doing/overlays/routes/app_route.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,9 +13,11 @@ void main() {
 void overlayMain() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    const MaterialApp(
+    GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MessangerChatHead(),
+      home: OverlayHomePage(),
+      initialRoute: OverlayHomePage.routeName,
+      getPages: AppRoute.getPage(),
     ),
   );
 }
@@ -29,7 +32,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomePage(),
     );

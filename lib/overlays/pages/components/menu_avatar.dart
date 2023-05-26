@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:what_am_i_doing/overlays/pages/components/bubble_avatar.dart';
 
-class ExpandAvatar extends StatelessWidget {
-  const ExpandAvatar({super.key});
+class MenuAvatar extends StatelessWidget {
+  const MenuAvatar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +33,6 @@ class ExpandAvatar extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class BubbleAvatar extends StatelessWidget {
-  const BubbleAvatar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const CircleAvatar(
-      radius: 50,
-      backgroundImage: AssetImage('assets/images/icon1.png'),
     );
   }
 }

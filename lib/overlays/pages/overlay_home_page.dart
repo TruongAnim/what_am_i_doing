@@ -4,16 +4,18 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay_window/flutter_overlay_window.dart';
-import 'package:what_am_i_doing/overlays/circle_menu_layout.dart';
+import 'package:what_am_i_doing/overlays/pages/components/bubble_avatar.dart';
+import 'package:what_am_i_doing/overlays/pages/components/menu_avatar.dart';
 
-class MessangerChatHead extends StatefulWidget {
-  const MessangerChatHead({Key? key}) : super(key: key);
+class OverlayHomePage extends StatefulWidget {
+  static const String routeName = '/home_overlay';
+  const OverlayHomePage({Key? key}) : super(key: key);
 
   @override
-  State<MessangerChatHead> createState() => _MessangerChatHeadState();
+  State<OverlayHomePage> createState() => _OverlayHomePageState();
 }
 
-class _MessangerChatHeadState extends State<MessangerChatHead> {
+class _OverlayHomePageState extends State<OverlayHomePage> {
   Color color = const Color(0xFFFFFFFF);
   BoxShape _currentShape = BoxShape.circle;
   static const String _kPortNameOverlay = 'OVERLAY';
@@ -64,9 +66,8 @@ class _MessangerChatHeadState extends State<MessangerChatHead> {
             color: Colors.transparent,
             shape: _currentShape,
           ),
-          child: _currentShape == BoxShape.circle
-              ? BubbleAvatar()
-              : ExpandAvatar(),
+          child:
+              _currentShape == BoxShape.circle ? BubbleAvatar() : MenuAvatar(),
         ),
       ),
     );
