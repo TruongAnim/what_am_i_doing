@@ -5,7 +5,6 @@ import 'dart:ui';
 import 'package:get/get.dart';
 import 'package:what_am_i_doing/overlays/controllers/overlay_state.dart';
 import 'package:what_am_i_doing/overlays/states/job_state.dart';
-import 'package:what_am_i_doing/overlays/states/state_constants.dart';
 import 'package:what_am_i_doing/overlays/states/state_manager.dart';
 
 class OverlayController extends GetxController {
@@ -37,7 +36,14 @@ class OverlayController extends GetxController {
   }
 
   void iconPress(String key) {
-    stateManager.changeState(StateConstant.uselessState);
+    stateManager.changeState(key);
     currentState.value = stateManager.currentState;
+    if (overlayState.value == AppOverlayState.expand) {
+      overlayState.value = AppOverlayState.icon;
+    } else if (overlayState.value == AppOverlayState.icon) {
+      overlayState.value = AppOverlayState.text;
+    } else {
+      overlayState.value = AppOverlayState.expand;
+    }
   }
 }
