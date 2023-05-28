@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:what_am_i_doing/overlays/controllers/overlay_controller.dart';
 import 'package:what_am_i_doing/overlays/pages/components/image_overlay.dart';
 import 'package:what_am_i_doing/overlays/pages/components/text_overlay.dart';
 import 'package:what_am_i_doing/overlays/pages/components/time_overlay.dart';
@@ -43,13 +45,19 @@ class _SrinkOverlayState extends State<SrinkOverlay> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      controller: controller,
-      children: const [
-        ImageOverlay(),
-        TextOverlay(),
-        TimeOverlay(),
-      ],
+    return GestureDetector(
+      onTap: () {
+        OverlayController controller = Get.find();
+        controller.onPress('');
+      },
+      child: PageView(
+        controller: controller,
+        children: const [
+          ImageOverlay(),
+          TextOverlay(),
+          TimeOverlay(),
+        ],
+      ),
     );
   }
 }

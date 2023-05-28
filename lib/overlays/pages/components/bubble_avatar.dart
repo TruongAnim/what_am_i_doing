@@ -12,11 +12,11 @@ class BubbleAvatar extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         OverlayController controller = Get.find();
-        controller.iconPress(state.key);
+        controller.onPress(state.key);
       },
       child: CircleAvatar(
         radius: 50,
-        backgroundImage: AssetImage(state.image),
+        backgroundImage: AssetImage(state.icon),
       ),
     );
   }

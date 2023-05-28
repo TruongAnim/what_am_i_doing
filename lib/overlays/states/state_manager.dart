@@ -6,8 +6,8 @@ class StateManager {
   static Map<String, JobState> states = {
     StateConstant.importantUrgentState: buildImportantUrgentState(),
     StateConstant.importantOnlyState: buildImportantOnlyState(),
-    StateConstant.urgentOnlyState: buildUrgentOnlyState(),
     StateConstant.uselessState: buildUselessState(),
+    StateConstant.urgentOnlyState: buildUrgentOnlyState(),
   };
 
   static JobState buildImportantUrgentState() {
@@ -30,23 +30,23 @@ class StateManager {
         time: 0);
   }
 
-  static JobState buildUrgentOnlyState() {
-    return JobState(
-        key: StateConstant.urgentOnlyState,
-        icon: AssetHelper.icon3,
-        image: AssetHelper.image3,
-        text1: 'Not Important',
-        text2: 'Urgent',
-        time: 0);
-  }
-
   static JobState buildUselessState() {
     return JobState(
         key: StateConstant.uselessState,
+        icon: AssetHelper.icon3,
+        image: AssetHelper.image3,
+        text1: 'Not Important',
+        text2: 'Not Urgent',
+        time: 0);
+  }
+
+  static JobState buildUrgentOnlyState() {
+    return JobState(
+        key: StateConstant.urgentOnlyState,
         icon: AssetHelper.icon4,
         image: AssetHelper.image4,
         text1: 'Not Important',
-        text2: 'Not Urgent',
+        text2: 'Urgent',
         time: 0);
   }
 
@@ -58,5 +58,25 @@ class StateManager {
 
   void changeState(String key) {
     currentState = states[key]!;
+  }
+
+  Duration getTime(String key) {
+    return Duration(seconds: states[key]!.time);
+  }
+
+  double getPercent(String key) {
+    int sum = 0;
+    states.values.toList().forEach((element) {
+      sum += element.time;
+    });
+    return states[key]!.time / sum;
+  }
+
+  Duration getCurrentTime() {
+    return getTime(currentState.key);
+  }
+
+  double getCurrentPercent() {
+    return getPercent(currentState.key);
   }
 }
