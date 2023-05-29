@@ -4,20 +4,17 @@ import 'package:what_am_i_doing/overlays/repository/models/job_time.dart';
 import 'package:what_am_i_doing/overlays/states/state_manager.dart';
 
 class DataController extends GetxController {
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    print('oninit');
-  }
-
+  AppRepository appRepository = AppRepository();
   @override
   void onReady() async {
     print('onready');
     super.onReady();
-    AppRepository appRepository = AppRepository();
     await appRepository.init();
     JobTime jobTime = await appRepository.getTodayJobTime();
     StateManager.updateTime(jobTime);
+  }
+
+  void saveJobTimeToLocal() {
+    appRepository.saveJobTime();
   }
 }

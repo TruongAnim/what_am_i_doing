@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'dart:isolate';
 import 'dart:ui';
 
+import 'package:flutter_overlay_window/flutter_overlay_window.dart';
 import 'package:get/get.dart';
+import 'package:what_am_i_doing/overlays/controllers/data_controller.dart';
 import 'package:what_am_i_doing/overlays/controllers/overlay_state.dart';
 import 'package:what_am_i_doing/overlays/states/job_state.dart';
 import 'package:what_am_i_doing/overlays/states/state_manager.dart';
@@ -63,13 +65,20 @@ class OverlayController extends GetxController {
   }
 
   void startTimer() {
-    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (overlayState.value == AppOverlayState.srink) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) async {
+      if (overlayState.value == AppOverlayState.srink &&
+          await FlutterOverlayWindow.isActive()) {
         currentState.value.time++;
         currentTime.value = getCurrentTime();
         currentPercent.value = getCurrentPercent();
+        saveJobTimeToLocal();
       }
     });
+  }
+
+  void saveJobTimeToLocal() {
+    DataController dataController = Get.find();
+    dataController.saveJobTimeToLocal();
   }
 
   void stopTimer() {

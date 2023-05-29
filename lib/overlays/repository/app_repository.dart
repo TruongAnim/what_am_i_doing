@@ -42,5 +42,15 @@ class AppRepository {
       jobTime.timeQ4 = StateManager.states[StateConstant.uselessState]!.time;
       await _isar.jobTimes.put(jobTime);
     });
+    print('Save time to Isar');
+  }
+
+  void clearData() async {
+    final allItems = await _isar.jobTimes.where().findAll();
+    await _isar.writeTxn(() async {
+      final count =
+          await _isar.jobTimes.deleteAll(allItems.map((e) => e.id).toList());
+      print('Delete ${count} items');
+    });
   }
 }
