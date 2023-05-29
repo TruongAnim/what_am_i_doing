@@ -1,4 +1,5 @@
 import 'package:what_am_i_doing/constants/asset_helper.dart';
+import 'package:what_am_i_doing/overlays/repository/models/job_time.dart';
 import 'package:what_am_i_doing/overlays/states/job_state.dart';
 import 'package:what_am_i_doing/overlays/states/state_constants.dart';
 
@@ -58,6 +59,16 @@ class StateManager {
 
   void changeState(String key) {
     currentState = states[key]!;
+  }
+
+  static void updateTime(JobTime jobTime) {
+    StateManager.states[StateConstant.importantUrgentState]!.time =
+        jobTime.timeQ1;
+    StateManager.states[StateConstant.importantOnlyState]!.time =
+        jobTime.timeQ2;
+    StateManager.states[StateConstant.urgentOnlyState]!.time = jobTime.timeQ3;
+    StateManager.states[StateConstant.uselessState]!.time = jobTime.timeQ4;
+    print('update time done');
   }
 
   Duration getTime(String key) {

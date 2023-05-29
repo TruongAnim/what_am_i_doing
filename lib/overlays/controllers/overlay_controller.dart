@@ -4,7 +4,6 @@ import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:what_am_i_doing/overlays/controllers/overlay_state.dart';
 import 'package:what_am_i_doing/overlays/states/job_state.dart';
 import 'package:what_am_i_doing/overlays/states/state_manager.dart';
@@ -55,10 +54,8 @@ class OverlayController extends GetxController {
   }
 
   String getCurrentTime() {
-    final formatter = DateFormat('HH:mm:ss');
-    final dateTime = DateTime.fromMillisecondsSinceEpoch(
-        stateManager.getCurrentTime().inMilliseconds);
-    return formatter.format(dateTime);
+    Duration duration = stateManager.getCurrentTime();
+    return '${duration.inHours}:${(duration.inMinutes % 60).toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
   String getCurrentPercent() {
@@ -66,7 +63,7 @@ class OverlayController extends GetxController {
   }
 
   void startTimer() {
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (overlayState.value == AppOverlayState.srink) {
         currentState.value.time++;
         currentTime.value = getCurrentTime();

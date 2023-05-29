@@ -10,8 +10,9 @@ void main() {
 }
 
 @pragma("vm:entry-point")
-void overlayMain() {
+void overlayMain() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,

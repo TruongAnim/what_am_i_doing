@@ -15,10 +15,8 @@ class TimeOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('rebuild');
     OverlayController controller = Get.find();
     return Obx(() {
-      print('obx call');
       return Container(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
