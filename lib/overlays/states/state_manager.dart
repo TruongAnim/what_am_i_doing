@@ -59,6 +59,9 @@ class StateManager {
 
   void changeState(String key) {
     currentState = states[key]!;
+    currentState.lastTime =
+        DateTime.now().subtract(Duration(seconds: currentState.time));
+    print(currentState.lastTime);
   }
 
   static void updateTime(JobTime jobTime) {

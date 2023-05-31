@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:what_am_i_doing/overlays/controllers/data_controller.dart';
 import 'package:what_am_i_doing/overlays/controllers/overlay_state.dart';
 import 'package:what_am_i_doing/overlays/states/job_state.dart';
+import 'package:what_am_i_doing/overlays/states/state_constants.dart';
 import 'package:what_am_i_doing/overlays/states/state_manager.dart';
 
 class OverlayController extends GetxController {
@@ -28,7 +29,6 @@ class OverlayController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    startTimer();
     currentState = Rx(stateManager.currentState);
 
     if (homePort != null) return;
@@ -39,6 +39,12 @@ class OverlayController extends GetxController {
     log("$res : HOME");
     _receivePort.listen((message) {
       log("message from UI: $message");
+      if (message == 'start') {
+        startTimer();
+      }
+      if (message == 'stop') {
+        stopTimer();
+      }
     });
   }
 
@@ -65,13 +71,17 @@ class OverlayController extends GetxController {
   }
 
   void startTimer() {
+    stateManager.changeState(StateConstant.importantUrgentState);
     timer = Timer.periodic(const Duration(seconds: 1), (timer) async {
       if (overlayState.value == AppOverlayState.srink &&
           await FlutterOverlayWindow.isActive()) {
-        currentState.value.time++;
+        currentState.value.time =
+            DateTime.now().difference(currentState.value.lastTime!).inSeconds;
         currentTime.value = getCurrentTime();
         currentPercent.value = getCurrentPercent();
         saveJobTimeToLocal();
+      } else {
+        print('something wrong');
       }
     });
   }

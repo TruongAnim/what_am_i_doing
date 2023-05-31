@@ -36,6 +36,11 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void sendMessage(String message) {
+    homePort ??= IsolateNameServer.lookupPortByName(_kPortNameOverlay);
+    homePort?.send(message);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,6 +81,7 @@ class _HomePageState extends State<HomePage> {
                   height: 400,
                   width: 400,
                 );
+                sendMessage('start');
               },
               child: const Text("Show Overlay"),
             ),
@@ -98,6 +104,7 @@ class _HomePageState extends State<HomePage> {
             TextButton(
               onPressed: () {
                 log('Try to close');
+                sendMessage('stop');
                 FlutterOverlayWindow.closeOverlay()
                     .then((value) => log('STOPPED: alue: $value'));
               },
@@ -106,9 +113,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 20.0),
             TextButton(
               onPressed: () {
-                homePort ??=
-                    IsolateNameServer.lookupPortByName(_kPortNameOverlay);
-                homePort?.send('Send to overlay: ${DateTime.now()}');
+                sendMessage('UI message');
               },
               child: const Text("Send message to overlay"),
             ),

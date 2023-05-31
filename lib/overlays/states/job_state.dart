@@ -5,6 +5,7 @@ class JobState {
   String text1;
   String text2;
   int time;
+  DateTime? lastTime;
   JobState({
     required this.key,
     required this.icon,
