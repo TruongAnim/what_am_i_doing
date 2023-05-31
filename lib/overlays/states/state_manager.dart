@@ -13,7 +13,8 @@ class StateManager {
   static JobState buildImportantUrgentState() {
     return JobState(
         key: StateConstant.importantUrgentState,
-        image: AssetHelper.icon1,
+        icon: AssetHelper.icon1,
+        image: AssetHelper.image1,
         text1: 'Important',
         text2: 'Urgent',
         time: 0);
@@ -22,7 +23,8 @@ class StateManager {
   static JobState buildImportantOnlyState() {
     return JobState(
         key: StateConstant.importantOnlyState,
-        image: AssetHelper.icon2,
+        icon: AssetHelper.icon2,
+        image: AssetHelper.image2,
         text1: 'Important',
         text2: 'Not Urgent',
         time: 0);
@@ -31,7 +33,8 @@ class StateManager {
   static JobState buildUrgentOnlyState() {
     return JobState(
         key: StateConstant.urgentOnlyState,
-        image: AssetHelper.icon3,
+        icon: AssetHelper.icon3,
+        image: AssetHelper.image3,
         text1: 'Not Important',
         text2: 'Urgent',
         time: 0);
@@ -40,7 +43,8 @@ class StateManager {
   static JobState buildUselessState() {
     return JobState(
         key: StateConstant.uselessState,
-        image: AssetHelper.icon4,
+        icon: AssetHelper.icon4,
+        image: AssetHelper.image4,
         text1: 'Not Important',
         text2: 'Not Urgent',
         time: 0);

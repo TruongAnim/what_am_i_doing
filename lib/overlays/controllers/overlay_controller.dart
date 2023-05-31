@@ -12,7 +12,7 @@ class OverlayController extends GetxController {
 
   late Rx<JobState> currentState;
 
-  Rx<AppOverlayState> overlayState = Rx<AppOverlayState>(AppOverlayState.icon);
+  Rx<AppOverlayState> overlayState = Rx<AppOverlayState>(AppOverlayState.srink);
   static const String _kPortNameOverlay = 'OVERLAY';
   static const String _kPortNameHome = 'UI';
   final _receivePort = ReceivePort();
@@ -39,9 +39,7 @@ class OverlayController extends GetxController {
     stateManager.changeState(key);
     currentState.value = stateManager.currentState;
     if (overlayState.value == AppOverlayState.expand) {
-      overlayState.value = AppOverlayState.icon;
-    } else if (overlayState.value == AppOverlayState.icon) {
-      overlayState.value = AppOverlayState.text;
+      overlayState.value = AppOverlayState.srink;
     } else {
       overlayState.value = AppOverlayState.expand;
     }

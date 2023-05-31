@@ -3,8 +3,7 @@ import 'package:get/get.dart';
 import 'package:what_am_i_doing/overlays/controllers/overlay_controller.dart';
 import 'package:what_am_i_doing/overlays/controllers/overlay_state.dart';
 import 'package:what_am_i_doing/overlays/pages/components/expand_overlay.dart';
-import 'package:what_am_i_doing/overlays/pages/components/icon_overlay.dart';
-import 'package:what_am_i_doing/overlays/pages/components/text_overlay.dart';
+import 'package:what_am_i_doing/overlays/pages/components/srink_overlay.dart';
 
 class OverlayHomePage extends StatefulWidget {
   static const String routeName = '/home_overlay';
@@ -19,10 +18,8 @@ class _OverlayHomePageState extends State<OverlayHomePage> {
 
   Widget buildOverlay(AppOverlayState state) {
     switch (state) {
-      case AppOverlayState.icon:
-        return IconOverlay();
-      case AppOverlayState.text:
-        return TextOverlay();
+      case AppOverlayState.srink:
+        return SrinkOverlay();
       case AppOverlayState.expand:
         return ExpandOverlay();
     }

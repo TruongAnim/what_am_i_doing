@@ -1,1 +1,1 @@
-enum AppOverlayState { icon, text, expand }
+enum AppOverlayState { srink, expand }
