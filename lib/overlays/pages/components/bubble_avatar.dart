@@ -15,7 +15,7 @@ class BubbleAvatar extends StatelessWidget {
         controller.onPress(state.key);
       },
       child: CircleAvatar(
-        radius: 50,
+        radius: 30,
         backgroundImage: AssetImage(state.icon),
       ),
     );

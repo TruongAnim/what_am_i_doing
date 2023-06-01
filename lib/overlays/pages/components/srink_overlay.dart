@@ -22,7 +22,7 @@ class _SrinkOverlayState extends State<SrinkOverlay> {
   void initState() {
     super.initState();
     controller = PageController(initialPage: 0);
-    _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
+    _timer = Timer.periodic(const Duration(seconds: 4), (Timer timer) {
       if (_currentPage < 2) {
         _currentPage++;
       } else {
@@ -52,6 +52,7 @@ class _SrinkOverlayState extends State<SrinkOverlay> {
       },
       child: PageView(
         controller: controller,
+        physics: NeverScrollableScrollPhysics(),
         children: const [
           ImageOverlay(),
           TextOverlay(),

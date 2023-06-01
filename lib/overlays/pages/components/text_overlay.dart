@@ -23,8 +23,6 @@ class TextOverlay extends StatelessWidget {
         controller.onPress(state.key);
       },
       child: Container(
-        width: 200,
-        height: 200,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           buildText(state.text1),
           buildText(state.text2),

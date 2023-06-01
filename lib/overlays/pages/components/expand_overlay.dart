@@ -9,8 +9,8 @@ class ExpandOverlay extends StatelessWidget {
 
   Widget buildIcon(JobState state) {
     return Container(
-      width: 70,
-      height: 70,
+      width: 60,
+      height: 60,
       child: BubbleAvatar(state: state),
     );
   }
@@ -18,8 +18,6 @@ class ExpandOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
-      width: 200,
       child: Stack(
         children: [
           Positioned(

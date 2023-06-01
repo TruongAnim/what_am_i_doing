@@ -33,8 +33,6 @@ class _OverlayHomePageState extends State<OverlayHomePage> {
       elevation: 0.0,
       child: Obx(() {
         return Container(
-          height: 200,
-          width: 200,
           alignment: Alignment.center,
           decoration: const BoxDecoration(
             color: Colors.transparent,

@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                   visibility: NotificationVisibility.visibilityPublic,
                   positionGravity: PositionGravity.auto,
                   height: 400,
-                  width: 400,
+                  width: 350,
                 );
                 sendMessage('start');
               },
