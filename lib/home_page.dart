@@ -108,7 +108,14 @@ class _HomePageState extends State<HomePage> {
                 FlutterOverlayWindow.closeOverlay()
                     .then((value) => log('STOPPED: alue: $value'));
               },
-              child: const Text("Close Overlay"),
+              child: const Text("Stop timer and Close Overlay"),
+            ),
+            const SizedBox(height: 10.0),
+            TextButton(
+              onPressed: () {
+                sendMessage('exit');
+              },
+              child: const Text("Totally Exit"),
             ),
             const SizedBox(height: 20.0),
             TextButton(

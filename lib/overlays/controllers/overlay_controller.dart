@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
@@ -28,6 +29,7 @@ class OverlayController extends GetxController {
 
   @override
   void onInit() {
+    print('On init');
     super.onInit();
     currentState = Rx(stateManager.currentState);
 
@@ -37,13 +39,16 @@ class OverlayController extends GetxController {
       _kPortNameOverlay,
     );
     log("$res : HOME");
-    _receivePort.listen((message) {
+    _receivePort.listen((message) async {
       log("message from UI: $message");
       if (message == 'start') {
         startTimer();
       }
       if (message == 'stop') {
-        stopTimer();
+        onClose();
+      }
+      if (message == 'exit') {
+        exit(0);
       }
     });
   }
@@ -97,6 +102,7 @@ class OverlayController extends GetxController {
 
   @override
   void onClose() {
+    print('on close');
     stopTimer();
     super.onClose();
   }
